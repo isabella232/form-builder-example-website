@@ -1,12 +1,12 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) that fetches data from [Payload CMS](https://payloadcms.com) using [GraphQL](https://graphql.org/).
+# Form Builder Example Website
 
-This repo is was made explicitly for an episode of [Learn With Jason](https://www.learnwithjason.dev/) which includes a live, hands-on demo — follow along directly with [the episode here](https://www.learnwithjason.dev/build-a-scalable-design-system-for-enterprise-websites).
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) that fetches data from [Payload CMS](https://payloadcms.com) using [GraphQL](https://graphql.org/).
 
 ## Getting Started
 
 ### Payload CMS
 
-First you'll need a running CMS. If you have not done so already, [clone the CMS repo](https://github.com/payloadcms/learn-with-jason-cms) and follow the setup instructions. Take note of your server URL, you'll need this in the next step.
+First you'll need a running CMS. If you have not done so already, [clone the CMS repo](https://github.com/payloadcms/form-builder-example-cms) and follow the setup instructions. Take note of your server URL, you'll need this in the next step.
 
 ### Next.js App
 
