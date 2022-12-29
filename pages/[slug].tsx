@@ -1,15 +1,16 @@
-import { GetStaticProps, GetStaticPaths } from 'next'
 import React from 'react';
+import {
+  GetStaticProps,
+  GetStaticPropsContext,
+  GetStaticPaths
+} from 'next';
 import Blocks from '../components/Blocks';
 import { Hero } from '../components/Hero';
-import { getApolloClient } from '../graphql';
-import { PAGE, PAGES } from '../graphql/pages';
 import type { MainMenu, Page } from '../payload-types';
 
-const PageTemplate: React.FC<{
+const Page: React.FC<{
   page: Page
   mainMenu: MainMenu
-  preview?: boolean
 }> = (props) => {
   const {
     page: {
@@ -26,44 +27,37 @@ const PageTemplate: React.FC<{
   )
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const apolloClient = getApolloClient();
+export default Page;
+
+export const getStaticProps: GetStaticProps = async (
+  context: GetStaticPropsContext,
+) => {
+  const { params } = context;
+
   const slug = params?.slug || 'home';
 
-  const { data } = await apolloClient.query({
-    query: PAGE,
-    variables: {
-      slug,
-    },
-  });
-
-  if (!data.Pages.docs[0]) {
-    return {
-      notFound: true,
-    }
-  }
+  const pageQuery = await fetch(`${process.env.NEXT_PUBLIC_CMS_URL}/api/pages?where[slug][equals]=${slug}`).then(
+    (res) => res.json(),
+  );
 
   return {
     props: {
-      page: data.Pages.docs[0],
-      mainMenu: data.MainMenu,
+      page: pageQuery.docs[0],
     },
   };
-}
+};
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const apolloClient = getApolloClient();
-
-  const { data } = await apolloClient.query({
-    query: PAGES,
-  });
+export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
+  const pagesQuery: { docs: Page[] } = await fetch(`${process.env.NEXT_PUBLIC_CMS_URL}/api/pages?limit=100`).then(
+    (res) => res.json(),
+  );
 
   return {
-    paths: data.Pages.docs.map(({ slug }) => ({
-      params: { slug },
+    paths: pagesQuery.docs.map((page) => ({
+      params: {
+        slug: page.slug,
+      },
     })),
     fallback: 'blocking',
   };
-}
-
-export default PageTemplate;
+};

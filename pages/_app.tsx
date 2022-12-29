@@ -1,4 +1,4 @@
-import { AppProps } from 'next/app';
+import App, { AppContext, AppProps } from 'next/app';
 import { GridProvider } from '@faceless-ui/css-grid';
 import { ModalContainer, ModalProvider } from '@faceless-ui/modal';
 import React from 'react';
@@ -45,5 +45,13 @@ const PayloadApp = (appProps: AppProps<{ mainMenu: MainMenu }>): React.ReactElem
     </React.Fragment>
   )
 }
+
+PayloadApp.getInitialProps = async (appContext: AppContext) => {
+  const appProps = await App.getInitialProps(appContext);
+
+  return {
+    ...appProps
+  };
+};
 
 export default PayloadApp
