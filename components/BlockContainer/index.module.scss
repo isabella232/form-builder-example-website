@@ -1,0 +1,7 @@
+@use '../.../../../css/queries.scss' as *;
+
+.blockContainer {
+  @include mid-break {
+    padding: 0 var(--gutter-h);
+  }
+}
