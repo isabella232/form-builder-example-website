@@ -1,0 +1,58 @@
+@use '../.../../../../css/queries.scss' as *;
+
+.intro {
+  margin-bottom: calc(var(--base) * 2);
+
+  @include mid-break {
+    margin-bottom: var(--base);
+  }
+}
+
+.fieldWrap {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: calc(var(--base) * -0.5);
+  margin-right: calc(var(--base) * -0.5);
+  width: calc(100% + #{var(--base)});
+
+  >* {
+    width: 100%;
+  }
+}
+
+.form {
+  border-top: 1px solid black;
+  margin: calc(var(--base) * -2) 0 calc(var(--base) * 3) 0;
+
+  @include mid-break {
+    margin-top: 0;
+  }
+}
+
+.Select {
+  & label {
+    position: absolute;
+    top: calc(var(--base) * -0.5);
+  }
+}
+
+.formWrap {
+  display: flex;
+}
+
+.sidebarContent {
+  @include mid-break {
+    display: none;
+  }
+}
+
+.mobileSidebar {
+  display: none;
+
+  @include mid-break {
+    display: block;
+    margin-bottom: calc(var(--base) * 2);
+  }
+}

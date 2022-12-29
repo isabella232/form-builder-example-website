@@ -5,11 +5,13 @@ import { BackgroundColor } from '../BackgroundColor';
 import { VerticalPaddingOptions } from '../VerticalPadding';
 import { CallToActionBlock } from './CallToAction';
 import { ContentBlock } from './Content';
+import { FormBlock } from './Form'
 import { MediaBlock } from './MediaBlock';
 
 const blockComponents = {
   cta: CallToActionBlock,
   content: ContentBlock,
+  formBlock: FormBlock,
   mediaBlock: MediaBlock
 }
 
