@@ -22,6 +22,7 @@ export const Select: React.FC<SelectField & {
           control={control}
           rules={{ required }}
           name={name}
+          defaultValue=""
           render={({ field: { onChange, value } }) => (
             <ReactSelect
               instanceId={name}

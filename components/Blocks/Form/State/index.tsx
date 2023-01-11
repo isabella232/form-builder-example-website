@@ -24,6 +24,7 @@ export const State: React.FC<StateField & {
           control={control}
           rules={{ required }}
           name={name}
+          defaultValue=""
           render={({ field: { onChange, value } }) => (
             <ReactSelect
               instanceId={name}
