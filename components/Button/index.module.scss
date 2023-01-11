@@ -19,8 +19,12 @@
 }
 
 .button {
-  text-decoration: none;
+  all: unset;
+  cursor: pointer;
+  box-sizing: border-box;
   display: inline-flex;
+  position: relative;
+  text-decoration: none;
   padding: 12px 18px;
   margin-bottom: var(--base);
 }

@@ -1,15 +1,17 @@
 import React from 'react';
 import { MessageField } from "payload-plugin-form-builder/dist/types";
 import RichText from '../../../RichText';
+import { Width } from "../Width";
 
 import classes from './index.module.scss';
 
-export const Message: React.FC<MessageField & { error: any; }> = ({ message, error }) => {
+export const Message: React.FC<MessageField> = ({ message }) => {
   return (
-    <div className={classes.input}>
+    <Width width="100">
       <RichText
         content={message}
+        className={classes.message}
       />
-    </div>
+    </Width>
   );
 };

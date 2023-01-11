@@ -1,15 +1,12 @@
-.input {
-  margin-bottom: 15px;
+@use "../shared.scss";
+
+.wrap {
+  position: relative;
+  margin-bottom: var(--base);
 }
 
-.input input {
-  width: 100%;
-  font-family: system-ui;
-  border-radius: 0;
-  box-shadow: 0;
-  border: 1px solid #d8d8d8;
-  height: 30px;
-  line-height: 30px;
+.input {
+  @include shared.formInput;
 }
 
 .label {
@@ -19,5 +16,5 @@
 
 .error {
   margin-top: 5px;
-  color: red;
+  color: var(--color-red);
 }

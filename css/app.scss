@@ -40,7 +40,7 @@
 
 html {
   @extend %body;
-  background: var(--color-base-0);
+  background: var(--color-white);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -52,7 +52,7 @@ body,
 
 body {
   font-family: var(--font-body);
-  color: var(--color-base-1000);
+  color: var(--color-black);
   margin: 0;
 }
 
