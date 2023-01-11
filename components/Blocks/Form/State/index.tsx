@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactSelect from 'react-select';
 import { StateField } from 'payload-plugin-form-builder/dist/types';
-import { Controller, Control } from 'react-hook-form';
-import { FieldValues } from 'react-hook-form';
+import { Controller, Control, FieldValues, FieldErrorsImpl } from 'react-hook-form';
 import { stateOptions } from './options';
 import { Width } from '../Width';
 
@@ -10,8 +9,10 @@ import classes from './index.module.scss';
 
 export const State: React.FC<StateField & {
   control: Control<FieldValues, any>
-  error: any;
-}> = ({ label, width, error, control, required }) => {
+  errors: Partial<FieldErrorsImpl<{
+    [x: string]: any;
+  }>>
+}> = ({ name, label, width, control, required, errors }) => {
 
   return (
     <Width width={width}>
@@ -22,10 +23,10 @@ export const State: React.FC<StateField & {
         <Controller
           control={control}
           rules={{ required }}
-          name="stateSelect"
+          name={name}
           render={({ field: { onChange, value } }) => (
             <ReactSelect
-              instanceId="stateSelect"
+              instanceId={name}
               options={stateOptions}
               value={stateOptions.find(t => t.value === value)}
               onChange={(val) => onChange(val.value)}
@@ -34,7 +35,7 @@ export const State: React.FC<StateField & {
             />
           )}
         />
-        {error && required && <div className={classes.error}>This field is required</div>}
+        {required && errors[name] && <div className={classes.error}>This field is required</div>}
       </div>
     </Width>
   );

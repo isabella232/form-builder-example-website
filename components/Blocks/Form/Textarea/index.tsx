@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextField } from 'payload-plugin-form-builder/dist/types';
-import { UseFormRegister, FieldValues } from 'react-hook-form';
+import { UseFormRegister, FieldValues, FieldErrorsImpl } from 'react-hook-form';
 import { Width } from '../Width';
 
 import classes from './index.module.scss';
@@ -8,18 +8,10 @@ import classes from './index.module.scss';
 export const Textarea: React.FC<TextField & {
   register: UseFormRegister<FieldValues & any>;
   rows?: number;
-  error: any;
-}> = (props) => {
-  const {
-    register,
-    name,
-    required,
-    label,
-    width,
-    rows = 3,
-    error
-  } = props;
-
+  errors: Partial<FieldErrorsImpl<{
+    [x: string]: any;
+  }>>
+}> = ({ name, label, width, rows = 3, register, required: requiredFromProps, errors }) => {
   return (
     <Width width={width}>
       <div className={classes.wrap}>
@@ -29,9 +21,9 @@ export const Textarea: React.FC<TextField & {
         <textarea
           rows={rows}
           className={classes.textarea}
-          {...register(name, { required })}
+          {...register(name, { required: requiredFromProps })}
         />
-        {error && required && <div className={classes.error}>This field is required</div>}
+        {requiredFromProps && errors[name] && <div className={classes.error}>This field is required</div>}
       </div>
     </Width>
   );

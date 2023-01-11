@@ -1,14 +1,16 @@
 import React from 'react';
 import { EmailField } from 'payload-plugin-form-builder/dist/types';
-import { UseFormRegister, FieldValues } from 'react-hook-form';
+import { UseFormRegister, FieldValues, FieldErrorsImpl } from 'react-hook-form';
 import { Width } from '../Width';
 
 import classes from './index.module.scss';
 
 export const Email: React.FC<EmailField & {
   register: UseFormRegister<FieldValues & any>;
-  error: any;
-}> = ({ name, width, label, register, required, error }) => {
+  errors: Partial<FieldErrorsImpl<{
+    [x: string]: any;
+  }>>
+}> = ({ name, width, label, register, required: requiredFromProps, errors }) => {
   return (
     <Width width={width}>
       <div className={classes.wrap}>
@@ -19,9 +21,9 @@ export const Email: React.FC<EmailField & {
           type="text"
           placeholder="Email"
           className={classes.input}
-          {...register(name, { required, pattern: /^\S+@\S+$/i })}
+          {...register(name, { required: requiredFromProps, pattern: /^\S+@\S+$/i })}
         />
-        {error && required && <div className={classes.error}>This field is required</div>}
+        {requiredFromProps && errors[name] && <div className={classes.error}>This field is required</div>}
       </div>
     </Width>
   );
