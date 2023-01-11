@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import React from 'react';
-import { useBackgroundColor } from '../BackgroundColor';
 import { Chevron } from '../icons/Chevron';
 import classes from './index.module.scss';
 
@@ -28,10 +27,9 @@ export const Button: React.FC<Props> = ({
   appearance,
   className: classNameFromProps
 }) => {
-  const backgroundColor = useBackgroundColor();
   const newTabProps = newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {};
   const Element = elements[el];
-  const className = [classNameFromProps, classes[`appearance--${appearance}`], classes[`${appearance}--${backgroundColor}`], classes.button].filter(Boolean).join(' ');
+  const className = [classNameFromProps, classes[`appearance--${appearance}`], classes.button].filter(Boolean).join(' ');
 
   const elementProps = {
     ...newTabProps,

@@ -3,12 +3,11 @@ import { GridProvider } from '@faceless-ui/css-grid';
 import { ModalContainer, ModalProvider } from '@faceless-ui/modal';
 import React from 'react';
 import { Header } from '../components/Header';
-import { MainMenu } from '../payload-types';
 import cssVariables from '../cssVariables';
 
 import '../css/app.scss';
 
-const PayloadApp = (appProps: AppProps<{ mainMenu: MainMenu }>): React.ReactElement => {
+const PayloadApp = (appProps: AppProps): React.ReactElement => {
   const {
     Component,
     pageProps,
@@ -36,9 +35,8 @@ const PayloadApp = (appProps: AppProps<{ mainMenu: MainMenu }>): React.ReactElem
         }}
       >
         <ModalProvider transTime={0} zIndex="var(--modal-z-index)">
-          <Header mainMenu={pageProps.mainMenu} />
+          <Header />
           <Component {...pageProps} />
-
           <ModalContainer />
         </ModalProvider>
       </GridProvider>

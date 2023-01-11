@@ -5,27 +5,7 @@
  * and re-run `payload generate:types` to regenerate this file.
  */
 
-export interface Config { }
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "main-menu".
- */
-export interface MainMenu {
-  id: string;
-  navItems: {
-    link: {
-      type?: 'reference' | 'custom';
-      newTab?: boolean;
-      reference: {
-        value: string | Page;
-        relationTo: 'pages';
-      };
-      url: string;
-      label: string;
-    };
-    id?: string;
-  }[];
-}
+export interface Config {}
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "pages".
@@ -34,7 +14,6 @@ export interface Page {
   id: string;
   title: string;
   hero: {
-    type: 'highImpact' | 'mediumImpact' | 'lowImpact';
     richText: {
       [k: string]: unknown;
     }[];
@@ -52,106 +31,21 @@ export interface Page {
       };
       id?: string;
     }[];
-    media: string | Media;
   };
-  layout: (
-    | {
-      ctaBackgroundColor?: 'white' | 'black';
-      richText: {
-        [k: string]: unknown;
-      }[];
-      links: {
-        link: {
-          type?: 'reference' | 'custom';
-          newTab?: boolean;
-          reference: {
-            value: string | Page;
-            relationTo: 'pages';
-          };
-          url: string;
-          label: string;
-        };
-        id?: string;
-      }[];
-      id?: string;
-      blockName?: string;
-      blockType: 'cta';
-    }
-    | {
-      contentBackgroundColor?: 'white' | 'black';
-      layout?: 'oneColumn' | 'twoThirdsOneThird' | 'halfAndHalf' | 'threeColumns';
-      columnOne: {
-        richText: {
-          [k: string]: unknown;
-        }[];
-        enableLink?: boolean;
-        link: {
-          type?: 'reference' | 'custom';
-          newTab?: boolean;
-          reference: {
-            value: string | Page;
-            relationTo: 'pages';
-          };
-          url: string;
-          label: string;
-          appearance?: 'default' | 'primary' | 'secondary';
-        };
-      };
-      columnTwo: {
-        richText: {
-          [k: string]: unknown;
-        }[];
-        enableLink?: boolean;
-        link: {
-          type?: 'reference' | 'custom';
-          newTab?: boolean;
-          reference: {
-            value: string | Page;
-            relationTo: 'pages';
-          };
-          url: string;
-          label: string;
-          appearance?: 'default' | 'primary' | 'secondary';
-        };
-      };
-      columnThree: {
-        richText: {
-          [k: string]: unknown;
-        }[];
-        enableLink?: boolean;
-        link: {
-          type?: 'reference' | 'custom';
-          newTab?: boolean;
-          reference: {
-            value: string | Page;
-            relationTo: 'pages';
-          };
-          url: string;
-          label: string;
-          appearance?: 'default' | 'primary' | 'secondary';
-        };
-      };
-      id?: string;
-      blockName?: string;
-      blockType: 'content';
-    }
-    | {
-      mediaBackgroundColor?: 'white' | 'black';
-      position?: 'default' | 'fullscreen';
-      media: string | Media;
-      caption?: {
-        [k: string]: unknown;
-      }[];
-      id?: string;
-      blockName?: string;
-      blockType: 'mediaBlock';
-    }
-  )[];
+  layout: {
+    form: string | Form;
+    enableIntro?: boolean;
+    introContent: {
+      [k: string]: unknown;
+    }[];
+    id?: string;
+    blockName?: string;
+    blockType: 'formBlock';
+  }[];
   slug?: string;
   meta: {
     title?: string;
     description?: string;
-    image?: string | Media;
   };
   _status?: 'draft' | 'published';
   createdAt: string;
@@ -159,17 +53,124 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
+ * via the `definition` "forms".
  */
-export interface Media {
+export interface Form {
   id: string;
-  alt: string;
-  url?: string;
-  filename?: string;
-  mimeType?: string;
-  filesize?: number;
-  width?: number;
-  height?: number;
+  title: string;
+  fields: (
+    | {
+        name: string;
+        label?: string;
+        width?: number;
+        defaultValue?: string;
+        required?: boolean;
+        id?: string;
+        blockName?: string;
+        blockType: 'text';
+      }
+    | {
+        name: string;
+        label?: string;
+        width?: number;
+        defaultValue?: string;
+        required?: boolean;
+        id?: string;
+        blockName?: string;
+        blockType: 'textarea';
+      }
+    | {
+        name: string;
+        label?: string;
+        width?: number;
+        defaultValue?: string;
+        options: {
+          label: string;
+          value: string;
+          id?: string;
+        }[];
+        required?: boolean;
+        id?: string;
+        blockName?: string;
+        blockType: 'select';
+      }
+    | {
+        name: string;
+        label?: string;
+        width?: number;
+        required?: boolean;
+        id?: string;
+        blockName?: string;
+        blockType: 'email';
+      }
+    | {
+        name: string;
+        label?: string;
+        width?: number;
+        required?: boolean;
+        id?: string;
+        blockName?: string;
+        blockType: 'state';
+      }
+    | {
+        name: string;
+        label?: string;
+        width?: number;
+        required?: boolean;
+        id?: string;
+        blockName?: string;
+        blockType: 'country';
+      }
+    | {
+        name: string;
+        label?: string;
+        width?: number;
+        defaultValue?: number;
+        required?: boolean;
+        id?: string;
+        blockName?: string;
+        blockType: 'number';
+      }
+    | {
+        name: string;
+        label?: string;
+        width?: number;
+        required?: boolean;
+        defaultValue?: boolean;
+        id?: string;
+        blockName?: string;
+        blockType: 'checkbox';
+      }
+    | {
+        message?: {
+          [k: string]: unknown;
+        }[];
+        id?: string;
+        blockName?: string;
+        blockType: 'message';
+      }
+  )[];
+  submitButtonLabel?: string;
+  confirmationType?: 'message' | 'redirect';
+  confirmationMessage: {
+    [k: string]: unknown;
+  }[];
+  redirect: {
+    url: string;
+  };
+  emails: {
+    emailTo: string;
+    bcc?: string;
+    replyTo?: string;
+    replyToName?: string;
+    emailFrom?: string;
+    emailFromName?: string;
+    subject: string;
+    message?: {
+      [k: string]: unknown;
+    }[];
+    id?: string;
+  }[];
   createdAt: string;
   updatedAt: string;
 }
@@ -184,6 +185,21 @@ export interface User {
   resetPasswordExpiration?: string;
   loginAttempts?: number;
   lockUntil?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "form-submissions".
+ */
+export interface FormSubmission {
+  id: string;
+  form: string | Form;
+  submissionData: {
+    field: string;
+    value: string;
+    id?: string;
+  }[];
   createdAt: string;
   updatedAt: string;
 }

@@ -6,11 +6,10 @@ import {
 } from 'next';
 import Blocks from '../components/Blocks';
 import { Hero } from '../components/Hero';
-import type { MainMenu, Page } from '../payload-types';
+import type { Page } from '../payload-types';
 
 const Page: React.FC<{
   page: Page
-  mainMenu: MainMenu
 }> = (props) => {
   const {
     page: {

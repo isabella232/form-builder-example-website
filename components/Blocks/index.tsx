@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react';
 import { Page } from '../../payload-types';
 import { toKebabCase } from '../../utilities/toKebabCase';
-import { BackgroundColor } from '../BackgroundColor';
-import { VerticalPaddingOptions } from '../VerticalPadding';
+import { VerticalPadding } from '../VerticalPadding';
 import { FormBlock } from './Form'
 
 const blockComponents = {
@@ -29,40 +28,18 @@ const Blocks: React.FC<{
 
           if (blockType && blockType in blockComponents) {
             const Block = blockComponents[blockType];
-            const backgroundColor = block[`${blockType}BackgroundColor`];
-            const prevBlock = blocks[index - 1];
-            const nextBlock = blocks[index + 1];
 
-            const prevBlockBackground = prevBlock?.[`${prevBlock.blockType}BackgroundColor`];
-            const nextBlockBackground = nextBlock?.[`${nextBlock.blockType}BackgroundColor`];
-
-            let paddingTop: VerticalPaddingOptions = 'large';
-            let paddingBottom: VerticalPaddingOptions = 'large';
-
-            if (backgroundColor === prevBlockBackground) {
-              paddingTop = 'medium';
-            }
-
-            if (backgroundColor === nextBlockBackground) {
-              paddingBottom = 'medium';
-            }
-
-            if (Block) {
-              return (
-                <BackgroundColor
+            return (
+              <VerticalPadding key={index}>
+                {/*@ts-ignore*/}
+                <Block
                   key={index}
-                  paddingTop={paddingTop}
-                  paddingBottom={paddingBottom}
-                  color={backgroundColor}
-                >
-                  {/*@ts-ignore*/}
-                  <Block
-                    id={toKebabCase(blockName)}
-                    {...block}
-                  />
-                </BackgroundColor>
-              );
-            }
+                  id={toKebabCase(blockName)}
+                  {...block}
+                />
+              </VerticalPadding>
+            );
+
           }
           return null;
         })}

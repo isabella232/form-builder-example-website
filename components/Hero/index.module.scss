@@ -1,4 +1,4 @@
-@import '../../../css/queries';
+@import '../../css/queries';
 
 .hero {
   padding-top: calc(var(--base) * 3);
@@ -8,7 +8,7 @@
   }
 }
 
-.media {
+.linksWrap {
   margin-top: calc(var(--base) * 3);
   width: calc(100% + var(--gutter-h));
   position: relative;
