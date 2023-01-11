@@ -30,13 +30,13 @@
 }
 
 .appearance--primary {
-  background-color: black;
-  color: white;
+  background-color: var(--color-black);
+  color: var(--color-white);
 }
 
 .appearance--secondary {
-  background-color: white;
-  box-shadow: inset 0 0 0 1px black;
+  background-color: var(--color-white);
+  box-shadow: inset 0 0 0 1px var(--color-black);
 }
 
 .appearance--default {
