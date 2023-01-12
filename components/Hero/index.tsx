@@ -13,7 +13,10 @@ export const Hero: React.FC<Page['hero']> = ({ richText, links }) => {
     <Gutter className={classes.hero}>
       <Grid>
         <Cell cols={12} colsM={4}>
-          <RichText content={richText} />
+          <RichText
+            className={classes.richText}
+            content={richText}
+          />
         </Cell>
       </Grid>
       <div className={classes.linksWrap}>

@@ -1,4 +1,4 @@
-@import '../../css/queries';
+@use '../../css/common.scss' as *;
 
 .hero {
   padding-top: calc(var(--base) * 3);
@@ -8,8 +8,14 @@
   }
 }
 
+.richText {
+  h1 {
+    @extend %h2;
+  }
+}
+
 .linksWrap {
-  margin-top: calc(var(--base) * 3);
+  margin-top: calc(var(--base) * 1.5);
   width: calc(100% + var(--gutter-h));
   position: relative;
 
