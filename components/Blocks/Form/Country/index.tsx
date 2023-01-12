@@ -3,6 +3,7 @@ import ReactSelect from 'react-select';
 import { CountryField } from 'payload-plugin-form-builder/dist/types';
 import { Controller, Control, FieldValues, FieldErrorsImpl } from 'react-hook-form';
 import { countryOptions } from './options';
+import { Error } from '../Error';
 import { Width } from '../Width';
 
 import classes from './index.module.scss';
@@ -35,7 +36,7 @@ export const Country: React.FC<CountryField & {
             />
           )}
         />
-        {required && errors[name] && <div className={classes.error}>This field is required</div>}
+        {required && errors[name] && <Error />}
       </div>
     </Width>
   );

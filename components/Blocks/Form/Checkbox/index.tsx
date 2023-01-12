@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { CheckboxField } from 'payload-plugin-form-builder/dist/types';
 import { UseFormRegister, FieldErrorsImpl, FieldValues } from 'react-hook-form';
-import { Width } from '../Width';
 import { Check } from '../../../icons/Check';
+import { Error } from '../Error';
+import { Width } from '../Width';
 
 import classes from './index.module.scss';
 
@@ -38,7 +39,7 @@ export const Checkbox: React.FC<CheckboxField & {
           </button>
           <span className={classes.label}>{label}</span>
         </div>
-        {requiredFromProps && errors[name] && <div className={classes.error}>This field is required</div>}
+        {requiredFromProps && errors[name] && <Error />}
       </div>
     </Width>
   );
