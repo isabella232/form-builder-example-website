@@ -13,25 +13,6 @@ export interface Config {}
 export interface Page {
   id: string;
   title: string;
-  hero: {
-    richText: {
-      [k: string]: unknown;
-    }[];
-    links: {
-      link: {
-        type?: 'reference' | 'custom';
-        newTab?: boolean;
-        reference: {
-          value: string | Page;
-          relationTo: 'pages';
-        };
-        url: string;
-        label: string;
-        appearance?: 'default' | 'primary' | 'secondary';
-      };
-      id?: string;
-    }[];
-  };
   layout: {
     form: string | Form;
     enableIntro?: boolean;
@@ -43,10 +24,6 @@ export interface Page {
     blockType: 'formBlock';
   }[];
   slug?: string;
-  meta: {
-    title?: string;
-    description?: string;
-  };
   _status?: 'draft' | 'published';
   createdAt: string;
   updatedAt: string;

@@ -5,7 +5,6 @@ import {
   GetStaticPaths
 } from 'next';
 import Blocks from '../components/Blocks';
-import { Hero } from '../components/Hero';
 import type { Page } from '../payload-types';
 
 const Page: React.FC<{
@@ -13,14 +12,12 @@ const Page: React.FC<{
 }> = (props) => {
   const {
     page: {
-      hero,
       layout,
     },
   } = props;
 
   return (
     <React.Fragment>
-      <Hero {...hero} />
       <Blocks blocks={layout} />
     </React.Fragment>
   )
