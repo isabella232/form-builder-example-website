@@ -33,7 +33,6 @@ const Blocks: React.FC<{
               <VerticalPadding key={index}>
                 {/*@ts-ignore*/}
                 <Block
-                  key={index}
                   id={toKebabCase(blockName)}
                   {...block}
                 />

@@ -161,7 +161,7 @@ export const FormBlock: React.FC<FormBlockType & {
             </div>
           )}
           {!hasSubmitted && (
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form id={formID} onSubmit={handleSubmit(onSubmit)}>
               <div className={classes.fieldWrap}>
                 {formFromProps && formFromProps.fields && formFromProps.fields.map((field, index) => {
                   const Field: React.FC<any> = fields?.[field.blockType];
@@ -186,6 +186,7 @@ export const FormBlock: React.FC<FormBlockType & {
                 label={submitButtonLabel}
                 appearance="primary"
                 el="button"
+                form={formID}
               />
             </form>
           )}

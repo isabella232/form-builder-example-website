@@ -9,6 +9,7 @@ export type Props = {
   el?: 'button' | 'link' | 'a'
   onClick?: () => void
   href?: string
+  form?: string
   newTab?: boolean
   className?: string
 }
@@ -24,6 +25,7 @@ export const Button: React.FC<Props> = ({
   label,
   newTab,
   href,
+  form,
   appearance,
   className: classNameFromProps
 }) => {
@@ -35,6 +37,7 @@ export const Button: React.FC<Props> = ({
     ...newTabProps,
     href,
     className,
+    form,
   }
 
   const content = (
