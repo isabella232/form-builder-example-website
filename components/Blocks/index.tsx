@@ -24,13 +24,18 @@ const Blocks: React.FC<{
           const {
             blockName,
             blockType,
+            form
           } = block;
+
+          const isFormBlock = blockType === 'formBlock'
+          {/*@ts-ignore*/ }
+          const formID: string = isFormBlock && form && form.id
 
           if (blockType && blockType in blockComponents) {
             const Block = blockComponents[blockType];
 
             return (
-              <VerticalPadding key={index}>
+              <VerticalPadding key={isFormBlock ? formID : index}>
                 {/*@ts-ignore*/}
                 <Block
                   id={toKebabCase(blockName)}
