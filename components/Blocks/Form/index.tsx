@@ -2,7 +2,6 @@ import React, { useState, useCallback } from 'react';
 import { Cell, Grid } from '@faceless-ui/css-grid';
 import { fields } from './fields';
 import { Form as FormType } from 'payload-plugin-form-builder/dist/types';
-import { formatSlug } from '../../../utilities/formatSlug';
 import RichText from '../../RichText';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
@@ -102,18 +101,10 @@ export const FormBlock: React.FC<FormBlockType & {
 
         if (confirmationType === 'redirect' && redirect) {
           const {
-            type,
-            reference,
             url
           } = redirect;
 
-          let redirectUrl = '';
-
-          if (type === 'custom') redirectUrl = url;
-
-          if (type === 'reference' && reference) {
-            redirectUrl = formatSlug(reference);
-          };
+          const redirectUrl = url;
 
           if (redirectUrl) router.push(redirectUrl);
         }
@@ -135,7 +126,7 @@ export const FormBlock: React.FC<FormBlockType & {
   ]);
 
   return (
-    <Gutter className={classes.formWrap}>
+    <Gutter>
       <Grid className={classes.form}>
         <Cell
           cols={12}
