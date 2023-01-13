@@ -5,9 +5,10 @@ import {
   GetStaticPaths
 } from 'next';
 import Blocks from '../components/Blocks';
-import type { Page } from '../payload-types';
+import type { Page, MainMenu } from '../payload-types';
 
 const Page: React.FC<{
+  mainMenu: MainMenu
   page: Page
 }> = (props) => {
   const {
