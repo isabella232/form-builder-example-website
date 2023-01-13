@@ -1,5 +1,4 @@
 import React, { useState, useCallback } from 'react';
-import { Cell, Grid } from '@faceless-ui/css-grid';
 import { fields } from './fields';
 import { Form as FormType } from 'payload-plugin-form-builder/dist/types';
 import RichText from '../../RichText';
@@ -127,62 +126,57 @@ export const FormBlock: React.FC<FormBlockType & {
 
   return (
     <Gutter>
-      <Grid className={classes.form}>
-        <Cell
-          cols={12}
-          colsM={4}
-        >
-          {enableIntro && introContent && !hasSubmitted && (
-            <RichText
-              className={classes.intro}
-              content={introContent}
-            />
-          )}
-          {!isLoading && hasSubmitted && confirmationType === 'message' && (
-            <RichText content={confirmationMessage} />
-          )}
-          {isLoading && !hasSubmitted && (
-            <p>
-              Loading, please wait...
-            </p>
-          )}
-          {error && (
-            <div>
-              {`${error.status || '500'}: ${error.message || ''}`}
+      <div className={classes.form}>
+        {enableIntro && introContent && !hasSubmitted && (
+          <RichText
+            className={classes.intro}
+            content={introContent}
+          />
+        )}
+        {!isLoading && hasSubmitted && confirmationType === 'message' && (
+          <RichText content={confirmationMessage} />
+        )}
+        {isLoading && !hasSubmitted && (
+          <p>
+            Loading, please wait...
+          </p>
+        )}
+        {error && (
+          <div>
+            {`${error.status || '500'}: ${error.message || ''}`}
+          </div>
+        )}
+        {!hasSubmitted && (
+          <form id={formID} onSubmit={handleSubmit(onSubmit)}>
+            <div className={classes.fieldWrap}>
+              {formFromProps && formFromProps.fields && formFromProps.fields.map((field, index) => {
+                const Field: React.FC<any> = fields?.[field.blockType];
+                if (Field) {
+                  return (
+                    <React.Fragment key={index}>
+                      <Field
+                        form={formFromProps}
+                        {...field}
+                        {...formMethods}
+                        register={register}
+                        errors={errors}
+                        control={control}
+                      />
+                    </React.Fragment>
+                  )
+                }
+                return null;
+              })}
             </div>
-          )}
-          {!hasSubmitted && (
-            <form id={formID} onSubmit={handleSubmit(onSubmit)}>
-              <div className={classes.fieldWrap}>
-                {formFromProps && formFromProps.fields && formFromProps.fields.map((field, index) => {
-                  const Field: React.FC<any> = fields?.[field.blockType];
-                  if (Field) {
-                    return (
-                      <React.Fragment key={index}>
-                        <Field
-                          form={formFromProps}
-                          {...field}
-                          {...formMethods}
-                          register={register}
-                          errors={errors}
-                          control={control}
-                        />
-                      </React.Fragment>
-                    )
-                  }
-                  return null;
-                })}
-              </div>
-              <Button
-                label={submitButtonLabel}
-                appearance="primary"
-                el="button"
-                form={formID}
-              />
-            </form>
-          )}
-        </Cell>
-      </Grid>
+            <Button
+              label={submitButtonLabel}
+              appearance="primary"
+              el="button"
+              form={formID}
+            />
+          </form>
+        )}
+      </div>
     </Gutter>
   )
 }

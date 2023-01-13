@@ -35,7 +35,10 @@ const Blocks: React.FC<{
             const Block = blockComponents[blockType];
 
             return (
-              <VerticalPadding key={isFormBlock ? formID : index}>
+              <VerticalPadding
+                key={isFormBlock ? formID : index}
+                top='small'
+              >
                 {/*@ts-ignore*/}
                 <Block
                   id={toKebabCase(blockName)}

@@ -3,7 +3,7 @@
 .content {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
 
   svg {
     margin-right: calc(var(--base) / 2);
@@ -27,6 +27,8 @@
   text-decoration: none;
   padding: 12px 18px;
   margin-bottom: var(--base);
+  align-items: center;
+  justify-content: center;
 }
 
 .appearance--primary {

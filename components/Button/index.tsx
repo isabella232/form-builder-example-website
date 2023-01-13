@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import React from 'react';
-import { Chevron } from '../icons/Chevron';
 import classes from './index.module.scss';
 
 export type Props = {
@@ -42,7 +41,6 @@ export const Button: React.FC<Props> = ({
 
   const content = (
     <div className={classes.content}>
-      <Chevron />
       <span className={classes.label}>
         {label}
       </span>
