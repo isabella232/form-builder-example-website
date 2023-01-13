@@ -1,6 +1,8 @@
 # Form Builder Example Website
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) that fetches data from [Payload CMS](https://payloadcms.com) using [GraphQL](https://graphql.org/).
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) that fetches data from [Payload CMS](https://payloadcms.com).
+
+This example repo was made explicitly to demonstrate the power and convenience of the [Form-Builder plugin](https://github.com/payloadcms/plugin-form-builder). Along with the `Form-Builder plugin`, this repo takes advantage of the popular [React Hooks Form](https://react-hook-form.com/) library for easy validation, giving users an easy way to build and manage forms.
 
 ## Getting Started
 
@@ -31,14 +33,16 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying the documents within your CMS.
+Once running, you will find a few seeded example forms on your local environment. Give them a try!
+
+You can also start editing the pages by modifying the documents within your CMS.
 
 ## Learn More
 
 To learn more about PayloadCMS and Next.js, take a look at the following resources:
 
 - [Payload CMS Documentation](https://payloadcms.com/docs) - learn about Payload CMS features and API.
-- [Payload GraphQL Documentation](https://payloadcms.com/docs/graphql/overview) - Payload's GraphQL documentation.
+- [Form Builder Plugin Documentation](https://github.com/payloadcms/plugin-form-builder) - learn about the plugin's features.
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
