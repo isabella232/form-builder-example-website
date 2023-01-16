@@ -31,7 +31,6 @@ export const Checkbox: React.FC<CheckboxField & {
           <input
             type="checkbox"
             {...register(name, { required: requiredFromProps })}
-            defaultChecked={false}
             checked={isCheckboxChecked}
           />
           <button

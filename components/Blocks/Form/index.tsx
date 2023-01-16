@@ -8,6 +8,7 @@ import { Gutter } from '../../Gutter';
 import { Button } from '../../Button';
 
 import classes from './index.module.scss';
+import { buildInitialFormState } from './buildInitialFormState';
 
 export type Value = unknown
 
@@ -45,7 +46,9 @@ export const FormBlock: React.FC<FormBlockType & {
     } = {},
   } = props;
 
-  const formMethods = useForm();
+  const formMethods = useForm({
+    defaultValues: buildInitialFormState(formFromProps.fields)
+  });
   const { register, handleSubmit, formState: { errors }, control, setValue, getValues } = formMethods;
 
   const [isLoading, setIsLoading] = useState(false);
