@@ -46,7 +46,7 @@ export const FormBlock: React.FC<FormBlockType & {
   } = props;
 
   const formMethods = useForm();
-  const { register, handleSubmit, formState: { errors }, control } = formMethods;
+  const { register, handleSubmit, formState: { errors }, control, setValue, getValues } = formMethods;
 
   const [isLoading, setIsLoading] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState<boolean>();

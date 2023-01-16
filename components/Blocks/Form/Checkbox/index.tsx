@@ -9,11 +9,15 @@ import classes from './index.module.scss';
 
 export const Checkbox: React.FC<CheckboxField & {
   register: UseFormRegister<FieldValues & any>,
+  setValue: any,
+  getValues: any,
   errors: Partial<FieldErrorsImpl<{
     [x: string]: any;
   }>>
-}> = ({ name, label, width, register, required: requiredFromProps, errors }) => {
+}> = ({ name, label, width, register, setValue, getValues, required: requiredFromProps, errors }) => {
   const [checked, setChecked] = useState(false);
+
+  const isCheckboxChecked = getValues(name);
 
   return (
     <Width width={width}>
@@ -27,11 +31,15 @@ export const Checkbox: React.FC<CheckboxField & {
           <input
             type="checkbox"
             {...register(name, { required: requiredFromProps })}
-            checked={checked}
+            defaultChecked={false}
+            checked={isCheckboxChecked}
           />
           <button
             type="button"
-            onClick={() => setChecked(!checked)}
+            onClick={() => {
+              setValue(name, !checked)
+              setChecked(!checked)
+            }}
           >
             <span className={classes.input}>
               <Check />
@@ -39,7 +47,7 @@ export const Checkbox: React.FC<CheckboxField & {
           </button>
           <span className={classes.label}>{label}</span>
         </div>
-        {requiredFromProps && errors[name] && <Error />}
+        {requiredFromProps && errors[name] && checked === false && <Error />}
       </div>
     </Width>
   );
